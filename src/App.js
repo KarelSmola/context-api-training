@@ -1,7 +1,17 @@
-import React from "react";
+import { useUsers } from "./contexts/MainContext";
 
 const App = () => {
-  return <div>App</div>;
+  const { users } = useUsers();
+
+  return (
+    <div>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>{user.firstName}</li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default App;
