@@ -1,0 +1,8 @@
+.input,
+.invalid {
+  padding: 0.5rem;
+}
+
+.invalid {
+  background-color: pink;
+}

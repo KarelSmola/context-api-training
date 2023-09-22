@@ -1,15 +1,9 @@
-import { useUsers } from "./contexts/MainContext";
+import InstallForm from "./components/InstallForm";
 
 const App = () => {
-  const { users } = useUsers();
-
   return (
     <div>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.firstName}</li>
-        ))}
-      </ul>
+      <InstallForm />
     </div>
   );
 };
