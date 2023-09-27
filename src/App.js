@@ -1,10 +1,11 @@
-import InstallForm from "./components/InstallForm";
+import { UserContextProvider } from "./contexts/UserContext";
+import UserList from "./components/UserList";
 
 const App = () => {
   return (
-    <div>
-      <InstallForm />
-    </div>
+    <UserContextProvider>
+      <UserList />
+    </UserContextProvider>
   );
 };
 
