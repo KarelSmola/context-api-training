@@ -1,16 +1,18 @@
 import React from "react";
-import { useUserContext } from "../contexts/UserContext";
+// import { useUserContext } from "../contexts/UserContext";
 
-const UserList = () => {
-  const userContext = useUserContext();
+const UserList = ({ users }) => {
+  // const context = useUserContext();
+  console.log("users list");
 
   return (
     <ul>
-      {userContext.users.map((user) => (
-        <li key={user.cell}>{user.name.first}</li>
+      {users.map((user) => (
+        <li key={user.id}>{user.firstName}</li>
       ))}
     </ul>
+    // <div>{context.user}</div>
   );
 };
 
-export default UserList;
+export default React.memo(UserList);

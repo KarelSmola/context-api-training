@@ -1,26 +1,49 @@
-import { useState, useEffect, createContext, useContext } from "react";
+import {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  useCallback,
+  useMemo,
+} from "react";
 
 const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
+  const [counter, setCounter] = useState(0);
+
+  const signout = useCallback(() => {
+    setUsers([]);
+  }, []);
+
+  const increaseValue = useCallback(() => {
+    setCounter(counter + 1);
+  }, [counter]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch("https://randomuser.me/api/?results=10");
+      const data = await fetch("https://api.api-ninjas.com/v1/randomuser");
       const response = await data.json();
-      console.log(response.results);
-
       setUsers(response.results);
     };
 
     fetchData();
   }, []);
 
+  const contextValue = useMemo(
+    () => ({
+      users,
+      signout,
+      counter,
+      increaseValue,
+      user: "Mike",
+    }),
+    [users, signout, counter, increaseValue]
+  );
+
   return (
-    <UserContext.Provider value={{ users: users }}>
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
   );
 };
 
